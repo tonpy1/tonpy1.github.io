@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>逃离大鹅 - 完整版</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="particles" id="particles"></div>
+
+<div class="container">
+<header>
+<h1>🦢 逃离大鹅</h1>
+<p class="subtitle">W A S D 移动 · 收集钥匙 · 智斗大鹅</p>
+</header>
+
+<div id="menu" class="ui-panel">
+<h2>选择关卡</h2>
+<div class="level-grid" id="levelButtons"></div>
+<div class="controls">
+<button class="btn btn-primary" onclick="openSettings()">⚙️ 设置</button>
+</div>
+</div>
+
+<div id="gameArea" class="hidden">
+<div class="game-wrapper">
+<canvas id="game" width="600" height="360"></canvas>
+</div>
+<div class="ui-panel">
+<div class="stats">
+<div class="stat-item"><div class="stat-label">关卡</div><div class="stat-value" id="levelDisplay">1</div></div>
+<div class="stat-item"><div class="stat-label">钥匙</div><div class="stat-value" id="keyCount">0/3</div></div>
+<div class="stat-item"><div class="stat-label">步数</div><div class="stat-value" id="steps">0</div></div>
+<div class="stat-item"><div class="stat-label">时间</div><div class="stat-value" id="time">0s</div></div>
+</div>
+<div class="controls">
+<button class="btn btn-primary" onclick="restartGame()">🔄 重开</button>
+<button class="btn btn-danger" onclick="backToMenu()">🏠 返回</button>
+</div>
+</div>
+</div>
+</div>
+
+<div id="gameOver" class="modal">
+<div class="modal-content">
+<h2 id="gameOverTitle">游戏结束</h2>
+<div class="stars" id="stars"></div>
+<p id="gameOverMsg"></p>
+<div class="controls">
+<button class="btn btn-success" onclick="restartGame()">🔄 再来</button>
+<button class="btn btn-primary" id="nextBtn" onclick="nextLevel()">➡️ 下一关</button>
+<button class="btn btn-danger" onclick="backToMenu()">🏠 返回</button>
+</div>
+</div>
+</div>
+
+<div id="settings" class="modal">
+<div class="modal-content">
+<h2>⚙️ 游戏设置</h2>
+<div class="controls" style="flex-direction:column;gap:15px;">
+<label>🎵 音效 <input type="checkbox" id="soundToggle" checked></label>
+<label>✨ 特效 <input type="checkbox" id="effectToggle" checked></label>
+<button class="btn btn-success" onclick="saveGame();alert('存档成功')">💾 手动存档</button>
+<button class="btn btn-primary" onclick="loadGame();initLevelSelect();alert('读档成功')">📂 读取存档</button>
+<button class="btn btn-danger" onclick="clearSave();location.reload()">🧹 清空存档</button>
+<button class="btn btn-danger" onclick="closeSettings()">关闭</button>
+</div>
+</div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
